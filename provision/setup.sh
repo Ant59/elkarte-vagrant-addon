@@ -49,7 +49,6 @@ unzip development.zip > /dev/null
 echo "Setting up Elkarte"
 cat /tmp/provision/database.sql | mysql -u root -p1234
 rm -rf /var/www/!(addons)
-rm -rf /var/www/addons/!(pages)
 mv Elkarte-development/!(tests|install) /var/www/
 cp -f /tmp/provision/Settings.php /var/www/
 

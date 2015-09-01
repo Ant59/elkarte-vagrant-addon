@@ -28,7 +28,7 @@ echo "Installing PHP extensions"
 apt-get install curl php5-curl php5-gd php5-mcrypt php5-mysql -y > /dev/null
 
 echo "Configuring PHP"
-cp -f /tmp/provision/php.ini /etc/php5/fpm/php.ini
+cp -f /vagrant/provision/php.ini /etc/php5/fpm/php.ini
 
 # MySQL 
 echo "Preparing MySQL"
@@ -47,10 +47,10 @@ unzip development.zip > /dev/null
 
 # Setup Elkarte
 echo "Setting up Elkarte"
-cat /tmp/provision/database.sql | mysql -u root -p1234
+cat /vagrant/provision/database.sql | mysql -u root -p1234
 rm -rf /var/www/!(addons)
 mv Elkarte-development/!(tests|install) /var/www/
-cp -f /tmp/provision/Settings.php /var/www/
+cp -f /vagrant/provision/Settings.php /var/www/
 
 # Install PHPUnit
 echo "Installing PHPUnit"
@@ -61,7 +61,7 @@ mv phpunit.phar /usr/bin/phpunit
 # Install xdebug
 echo "Installing Xdebug"
 apt-get install php5-xdebug -y > /dev/null
-cp -f /tmp/provision/20-xdebug.ini /etc/php5/fpm/conf.d/20-xdebug.ini
+cp -f /vagrant/provision/20-xdebug.ini /etc/php5/fpm/conf.d/20-xdebug.ini
 
 # Install Webgrind
 echo "Installing Webgrind"
@@ -71,7 +71,7 @@ unzip master.zip > /dev/null
 mkdir /var/www/webgrind
 mv webgrind-master/* /var/www/webgrind/
 apt-get install python graphviz -y > /dev/null
-cp -f /tmp/provision/config.php /var/www/webgrind/config.php
+cp -f /vagrant/provision/config.php /var/www/webgrind/config.php
 
 # Add phpinfo.php
 echo "<?php phpinfo(); ?>" > /var/www/phpinfo.php
@@ -81,7 +81,7 @@ service php5-fpm restart > /dev/null
 
 # Nginx Configuration
 echo "Configuring Nginx"
-cp -f /tmp/provision/nginx_vhost /etc/nginx/sites-available/nginx_vhost > /dev/null
+cp -f /vagrant/provision/nginx_vhost /etc/nginx/sites-available/nginx_vhost > /dev/null
 ln -s /etc/nginx/sites-available/nginx_vhost /etc/nginx/sites-enabled/ > /dev/null 2>&1
 
 rm -f /etc/nginx/sites-available/default

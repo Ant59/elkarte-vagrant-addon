@@ -7,7 +7,6 @@ Vagrant.configure("2") do |config|
 	config.vm.network :forwarded_port, guest: 80, host: 8932, auto_correct: true
 
     # Setup synced folder
-    config.vm.synced_folder "./provision/", "/tmp/provision", create: true, group: "www-data", owner: "www-data"
     config.vm.synced_folder "./pages/", "/var/www/addons/pages", create: true, group: "www-data", owner: "www-data"
 
     # VM specific configs

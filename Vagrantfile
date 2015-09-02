@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
 
     # VM specific configs
     config.vm.provider "virtualbox" do |v|
-    	v.name = "Pages Mod"
+    	v.name = "addon_name"
     	v.customize ["modifyvm", :id, "--memory", "1024"]
     end
 
